@@ -1,0 +1,51 @@
+{"code":"ENOENT","errno":-4058,"level":"error","message":"Failed to load services ENOENT: no such file or directory, scandir 'C:\\Repositories\\dotbox-nodeploy\\data'","path":"C:\\Repositories\\dotbox-nodeploy\\data","stack":"Error: ENOENT: no such file or directory, scandir 'C:\\Repositories\\dotbox-nodeploy\\data'\n    at async Object.readdir (node:internal/fs/promises:948:18)\n    at async ServiceManager.loadServices (C:\\Repositories\\dotbox-nodeploy\\lib\\ServiceManager.js:44:26)","syscall":"scandir","timestamp":"2025-06-13T21:45:05.005Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-13T21:45:50.543Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-13T21:47:51.566Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-13T22:02:34.934Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-13T22:02:34.963Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T06:18:26.664Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T06:18:26.692Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T10:34:52.386Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T10:34:52.405Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T10:35:26.099Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T10:35:26.120Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T10:35:45.633Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T10:35:45.652Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T11:00:30.936Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T11:00:30.953Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T14:15:05.954Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T14:15:05.986Z"}
+{"level":"error","message":"Failed to stop service pelle process or namespace not found","stack":"Error: process or namespace not found\n    at C:\\Repositories\\dotbox-nodeploy\\node_modules\\pm2\\lib\\API.js:1519:28\n    at C:\\Repositories\\dotbox-nodeploy\\node_modules\\pm2\\lib\\Client.js:735:12\n    at C:\\Repositories\\dotbox-nodeploy\\node_modules\\pm2-axon-rpc\\lib\\client.js:45:10\n    at Parser.<anonymous> (C:\\Repositories\\dotbox-nodeploy\\node_modules\\pm2-axon\\lib\\sockets\\req.js:67:8)\n    at Parser.emit (node:events:519:28)\n    at Parser._write (C:\\Repositories\\dotbox-nodeploy\\node_modules\\amp\\lib\\stream.js:91:16)\n    at writeOrBuffer (node:internal/streams/writable:570:12)\n    at _write (node:internal/streams/writable:499:10)\n    at Writable.write (node:internal/streams/writable:508:10)\n    at Socket.ondata (node:internal/streams/readable:1007:22)","timestamp":"2025-06-14T14:15:12.001Z"}
+{"level":"info","message":"Service pelle restarted","timestamp":"2025-06-14T14:15:28.756Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T14:21:41.965Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T14:21:41.988Z"}
+{"level":"info","message":"Service pelle restarted","timestamp":"2025-06-14T14:21:56.612Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T14:42:03.774Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T14:42:03.793Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T14:46:27.247Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T14:46:27.280Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T14:48:45.619Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T14:48:45.638Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T14:54:25.197Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T14:54:25.221Z"}
+{"level":"info","message":"Service pelle restarted","timestamp":"2025-06-14T14:54:34.417Z"}
+{"level":"info","message":"Service pelle stopped","timestamp":"2025-06-14T14:54:49.697Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T14:58:45.407Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T14:58:45.436Z"}
+{"level":"info","message":"Service pelle stopped","timestamp":"2025-06-14T14:58:57.373Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T15:06:02.248Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T15:06:02.270Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T15:06:57.385Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T15:06:57.414Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T15:50:01.983Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T15:50:02.011Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T15:56:26.088Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T15:56:26.106Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T16:06:02.802Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T16:06:02.830Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T16:13:12.946Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T16:13:12.968Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T16:19:00.252Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T16:19:00.280Z"}
+{"level":"info","message":"Ensured data directory exists at ./data","timestamp":"2025-06-14T16:20:05.655Z"}
+{"level":"info","message":"Connected to PM2","timestamp":"2025-06-14T16:20:05.673Z"}

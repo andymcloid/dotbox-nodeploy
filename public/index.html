@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>DotBox Nodeploy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        @font-face {
+            font-family: 'Silom';
+            src: url('/font/SilomBol.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body { background: #181825; color: #cdd6f4; font-family: 'Segoe UI', sans-serif; }
+        .header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: #1e1e2e; }
+        .status { font-size: 0.9em; }
+        .container { max-width: 900px; margin: 2rem auto; padding: 2rem; background: #23233a; border-radius: 10px; box-shadow: 0 2px 16px #0002; }
+        .service-list { margin-top: 2rem; }
+        .service-card { background: #313244; border-radius: 8px; margin-bottom: 1.5rem; padding: 1.5rem; box-shadow: 0 1px 6px #0003; }
+        .service-header { display: flex; align-items: center; justify-content: space-between; }
+        .env-list { margin: 0.5rem 0 1rem 0; }
+        .env-item { display: flex; gap: 1rem; margin-bottom: 0.3rem; }
+        .release-list { margin-top: 1rem; }
+        .release-item { display: flex; align-items: center; justify-content: space-between; background: #45475a; border-radius: 5px; padding: 0.5rem 1rem; margin-bottom: 0.5rem; }
+        .active-release { color: #a6e3a1; font-weight: bold; }
+        .btn { background: #89b4fa; color: #181825; border: none; border-radius: 5px; padding: 0.5rem 1.2rem; cursor: pointer; font-weight: 500; transition: background 0.2s; }
+        .btn:hover { background: #74c7ec; }
+        .btn-danger { background: #f38ba8; color: #fff; }
+        .btn-secondary { background: #45475a; color: #cdd6f4; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(30,30,46,0.85); align-items: center; justify-content: center; z-index: 1000; }
+        .modal.show { display: flex; }
+        .modal-content { background: #23233a; border-radius: 10px; padding: 2rem; min-width: 350px; max-width: 95vw; }
+        .modal-header { font-size: 1.3em; margin-bottom: 1rem; }
+        .env-row { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .env-row input { width: 40%; }
+        .env-row .btn { padding: 0.2rem 0.7rem; }
+        .error { color: #f38ba8; margin-top: 0.5rem; }
+        .branding {
+            display: flex; align-items: center; gap: 1rem;
+        }
+        .branding-title {
+            font-family: 'Silom', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+        .branding-dotbox {
+            color: #F5BB11;
+            font-size: 1.5rem;
+        }
+        .branding-nodeploy {
+            color: #fff;
+            font-family: 'Silom', monospace;
+            font-weight: 400;
+            opacity: 0.92;
+            font-size: 1rem;
+            margin-left: 0.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="branding">
+            <img src="/img/dotbox_logo_only.svg" alt="DotBox logo" style="height:2.2rem;vertical-align:middle;">
+            <span class="branding-title"><span class="branding-dotbox">Dotbox</span><span class="branding-nodeploy">Nodeploy</span></span>
+        </div>
+        <div class="status" id="connectionStatus">Ansluter...</div>
+        <button class="btn" id="addServiceBtn">Ny tjänst</button>
+    </div>
+    <div class="container">
+        <div id="serviceList" class="service-list"></div>
+    </div>
+
+    <!-- Modal: Create Service -->
+    <div class="modal" id="serviceModal">
+        <div class="modal-content">
+            <div class="modal-header">Skapa ny tjänst</div>
+            <form id="serviceForm">
+                <label for="serviceName">Tjänstens namn</label><br>
+                <input type="text" id="serviceName" name="serviceName" required pattern="[a-z0-9-]+" placeholder="t.ex. min-tjanst"><br><br>
+                <label>Miljövariabler (ENV)</label>
+                <div id="envList"></div>
+                <button type="button" class="btn btn-secondary" id="addEnvBtn">Lägg till ENV</button><br><br>
+                <div class="error" id="serviceError"></div>
+                <button type="submit" class="btn">Skapa tjänst</button>
+                <button type="button" class="btn btn-secondary" id="cancelServiceBtn">Avbryt</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Upload Release -->
+    <div class="modal" id="releaseModal">
+        <div class="modal-content">
+            <div class="modal-header">Ladda upp release</div>
+            <form id="releaseForm">
+                <input type="file" id="releaseFile" name="releaseFile" accept=".tgz" required><br><br>
+                <div class="error" id="releaseError"></div>
+                <button type="submit" class="btn">Ladda upp</button>
+                <button type="button" class="btn btn-secondary" id="cancelReleaseBtn">Avbryt</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Edit ENV -->
+    <div class="modal" id="editEnvModal">
+        <div class="modal-content">
+            <div class="modal-header">Redigera miljövariabler</div>
+            <form id="editEnvForm">
+                <div id="editEnvList"></div>
+                <button type="button" class="btn btn-secondary" id="addEditEnvBtn">Lägg till ENV</button><br><br>
+                <div class="error" id="editEnvError"></div>
+                <button type="submit" class="btn">Spara</button>
+                <button type="button" class="btn btn-secondary" id="cancelEditEnvBtn">Avbryt</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Logs -->
+    <div class="modal" id="logsModal">
+        <div class="modal-content" style="min-width:500px;max-width:95vw;">
+            <div class="modal-header">Loggar för <span id="logsServiceName"></span></div>
+            <pre id="logsArea" style="background:#181825;color:#a6adc8;height:350px;overflow:auto;border-radius:6px;padding:1em;font-size:0.95em;"></pre>
+            <div class="error" id="logsError"></div>
+            <button class="btn btn-secondary" id="clearLogsBtn">Rensa loggar</button>
+            <button class="btn btn-secondary" id="closeLogsBtn">Stäng</button>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html> 
